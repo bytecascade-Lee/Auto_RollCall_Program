@@ -1,0 +1,57 @@
+{
+  "name": {
+    "total": "namelist text",
+    "path": "user/namelist.txt",
+    "decode": "GBK"
+  },
+  "parameter": {
+    "total": "parameter text",
+    "path": "user/parameter.txt",
+    "decode": "GBK"
+  },
+  "output": {
+    "total": "output text",
+    "path": "user/output.txt",
+    "decode": "GBK"
+  },
+  "cache": {
+    "total": "cache log",
+    "path": "inner/cache.log",
+    "decode": "UTF-8"
+  },
+  "attendance": {
+    "total": "attendance comma-separated values",
+    "path": "inner/attendance.csv",
+    "decode": "UTF-8"
+  },
+  "lang": {
+    "total": "language initialization file",
+    "path": "inner/language.ini",
+    "decode": "UTF-8"
+  },
+  "config_setup": {
+    "total": "config_setup python",
+    "path": "package/config_setup.py",
+    "decode": "UTF-8"
+  },
+  "function": {
+    "total": "function python",
+    "path": "package/function.py",
+    "decode": "UTF-8"
+  },
+  "constant": {
+    "total": "constant python",
+    "path": "package/constant.py",
+    "decode": "UTF-8"
+  },
+  "__init__": {
+    "total": "__init__ python",
+    "path": "package/__init__.py",
+    "decode": "UTF-8"
+  },
+  "readme": {
+    "total": "ReadMe markdown",
+    "path": "ReadMe.md",
+    "decode": "UTF-8"
+  }
+}
