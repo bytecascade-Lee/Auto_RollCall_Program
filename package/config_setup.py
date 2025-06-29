@@ -22,7 +22,6 @@ except Exception as e:
 
 
 keys = [
-    'host',
     'name',
     'parameter',
     'output',
