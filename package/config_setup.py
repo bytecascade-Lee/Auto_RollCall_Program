@@ -72,7 +72,7 @@ with open(file=文件路径['parameter'], mode='r', encoding=文件编码['param
         语言: str = '中文'
 
 with open(file=文件路径['name'], mode='r', encoding=文件编码['name']) as file:
-    总名单: set = {i.strip() for i in file.readlines() if i.strip()}
+    总名单: set = {j for i in file.readlines() if (j := i.strip())}
     当前名单: list = [i for i in 总名单]
 
 if len(总名单) == 0:
