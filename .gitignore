@@ -1,3 +1,6 @@
-/user/
 /inner/attendance.csv
 /inner/cache.log
+/.idea/
+/api.rst
+/docs/
+/ReadMe.md

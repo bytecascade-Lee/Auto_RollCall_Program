@@ -1,0 +1,5 @@
+无重点名  <1>
+语音播报  <1>
+选择语言  <中文>
+0 = False 1=True
+language = 中文 / English

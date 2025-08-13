@@ -1,96 +1,95 @@
 #!/usr/bin/env python3
 # -*- coding:UTF-8 -*-
-# 提交时间：2025年6月28日23:15:35
-# 版本号：4.2
 from datetime import datetime
-from package.constant import *
+from io import TextIOWrapper
+
 from package.config_setup import *
 
 
-def 红色(_x):
-    return RED + str(_x) + RESET
+def 红色(content: Any) -> String:
+    return RED + str(content) + RESET
 
 
-def 蓝色(_x):
-    return BLUE + str(_x) + RESET
+def 蓝色(content: Any) -> String:
+    return BLUE + str(content) + RESET
 
 
-def 青色(_x):
-    return CYAN + str(_x) + RESET
+def 青色(content: Any) -> String:
+    return CYAN + str(content) + RESET
 
 
-def 绿色(_x):
-    return GREEN + str(_x) + RESET
+def 绿色(content: Any) -> String:
+    return GREEN + str(content) + RESET
 
 
-def 黄色(_x):
-    return YELLOW + str(_x) + RESET
+def 黄色(content: Any) -> String:
+    return YELLOW + str(content) + RESET
 
 
-def 黑色(_x):
-    return BLACK + str(_x) + RESET
+def 黑色(content: Any) -> String:
+    return BLACK + str(content) + RESET
 
 
 def 取整输入(*args):
     while True:
         print(*args, end='')
-        _a = input()
+        sc = input()
         try:
-            return int(_a)
+            return int(sc)
         except Exception as e:
-            if _a == 'exit':
+            if sc == 'exit':
                 exit(-1)
-            print(红色(e))
+            print(红色(e), 青色(sc))
 
 
-def 功能打印(_x):
-    def temp(_a, _b, _c):
+def 功能打印(obj):
+    def temp(index, content, color: Callable[Any, String]):
         print(' ', end='')
-        print(_c(_a).rjust(2), end=' ')
-        print(_c(_b))
+        print(color(index).rjust(2), end=' ')
+        print(color(content))
 
-    for _i, _j in _x.items():
+    for _i, _j in obj.items():
         if _i in support:
             temp(_i, _j, 黄色)
-    for _i, _j in _x.items():
+    for _i, _j in obj.items():
         if _i not in support:
             temp(_i, _j, 黑色)
 
 
-def text(_x):
-    if isinstance(_x, str):
-        return 文本.get(语言, _x.upper())
-    if isinstance(_x, list):
-        return [文本.get(语言, _i.upper()) for _i in _x]
+def text(content: Union[String, Collection[String]]) -> Union[String, List[String], None]:
+    if isinstance(content, String):
+        return 文本.get(语言, content.upper())
+    if isinstance(content, Iterable):
+        return [文本.get(语言, _i.upper()) for _i in content]
     return None
 
 
-def space(_x=1):
-    _a = '\n' * _x
-    print(f"\n-------------------{_a}".center(5))
+def space(times: Int=1):
+    times = '\n' * times
+    print(f"\n-------------------{times}".center(5))
 
 
-def 格式化输出(_x, file=None):
-    print(青色(len(_x)), '↓')
-    _a = 0
-    for _i in _x:
-        if (_a + 1) % 7:
-            _b = ''
+def 格式化输出(obj: Union[List, Set, Tuple, Dict], file: Union[String, Path, TextIOWrapper, None]=None):
+    length = len(obj)
+    count = 0
+    print(青色(length), 红色('BEGIN  ↓'), )
+    for _i in obj:
+        if (count + 1) % 7 == 0 or count == length - 1:
+            end = '\n'
         else:
-            _b = '\n'
-        print(青色(_i.ljust(5)), end=_b, file=file)
-        _a += 1
-    print(青色(len(_x)), '↑')
+            end = ''
+        print(青色(_i.ljust(5)), end=end, file=file)
+        count += 1
+    print(青色(length), 红色('END  ↑'), )
 
 
-def support_ctrl(_x: bool, _y: str, *_z: int):
-    if _x:
-        for _k, _j in zip(range(len(_z)), _z):
-            if _y == 'd':
-                support.remove(_j)
-            if _y == 'a':
-                support.add(_j)
+def support_ctrl(condition: Bool, mode: Literal['a', 'd'], *_z: Int):
+    if condition:
+        operations = {
+            'd': lambda x, y: x.remove(y),
+            'a': lambda x, y: x.add(y)}
+        for _i in _z:
+            operations[mode](support, _i)
 
-
-def 当前时间():
+def 当前时间() -> String:
     return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
