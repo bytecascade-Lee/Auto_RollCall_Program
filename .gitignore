@@ -1,6 +1,11 @@
+# 提交时间：2025年8月13日
+# 版本号：4.3.1
 /inner/attendance.csv
 /inner/cache.log
 /.idea/
 /api.rst
 /docs/
-/ReadMe.md
+/user/3-18.txt
+/user/namelist.txt
+/user/output.txt
+user/history

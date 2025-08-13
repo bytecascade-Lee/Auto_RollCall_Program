@@ -1,5 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding:UTF-8 -*-
+# 提交时间：2025年8月13日
+# 版本号：4.3.1
 from csv import writer
 from random import choice, seed
 from shutil import copy2, rmtree
@@ -146,6 +148,7 @@ while True:
 
             if x == 12:
                 open(file=文件路径['cache'], mode='w', encoding=文件编码['cache']).close()
+                open(file=文件路径['attendance'], mode='w', encoding=文件编码['attendance']).close()
                 rmtree(r'user\history', ignore_errors=True)
             space()
     space()
