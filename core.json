@@ -48,10 +48,5 @@
     "total": "__init__ python",
     "path": "package/__init__.py",
     "decode": "UTF-8"
-  },
-  "__main__": {
-    "提交时间": "2025年8月13日",
-    "版本号": "4.3.1"
-
-}
+  }
 }
