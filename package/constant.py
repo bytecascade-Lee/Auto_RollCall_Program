@@ -28,12 +28,13 @@ engine.setProperty(name='volume', value=1.0)
 
 func_main: List[String] = ['1.00', '2.00', '3.00', '0.00']
 func_auxiliary: List[String] = ['4.00', '5.00', '6.00', '7.00', '8.00', '9.00', '10.00', '11.00', '12.00']
-func_check: List[String] = ['0.01', '4.01', '5.01', '6.01', '7.01', '8.01', '9.01']
+func_check: List[String] = ['0.01', '3.01', '5.01', '6.01', '7.01', '8.01', '9.01']
 func_dev: List[String] = ['10.02.01', '10.02.02']
 
 FUNC_main, FUNC_auxiliary, FUNC_check, FUNC_dev = [{}, {}, {}, {}]
 
-support, 当前被点到 = [set({}), set({})]
+support = set({})
+当前被点到 = []
 
 添加成员, 删除成员 = [[], []]
 dev_map: Dict[Int, Tuple[String, List]] = {1: ('10.05', 添加成员), 2: ('10.06', 删除成员)}

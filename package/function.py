@@ -32,16 +32,19 @@ def 黑色(content: Any) -> String:
     return BLACK + str(content) + RESET
 
 
-def 取整输入(*args):
+def 姓名输入(content: String) -> List[String]:
+    sc = input(content)
+    return [s for s in sc.split('/') if s and s != '0']
+
+def 取整输入(content: String):
     while True:
-        print(*args, end='')
-        sc = input()
-        try:
+        sc = input(content)
+        if sc.isdigit():
             return int(sc)
-        except Exception as e:
-            if sc == 'exit':
-                exit(-1)
-            print(红色(e), 青色(sc))
+        elif sc == 'exit':
+            exit(-1)
+        else:
+            print(红色(text('0.01')), 青色(sc))
 
 
 def 功能打印(obj):
@@ -68,21 +71,24 @@ def text(content: Union[String, Collection[String]]) -> Union[String, List[Strin
 
 def space(times: Int=1):
     times = '\n' * times
-    print(f"\n-------------------{times}".center(5))
+    print(f'\n------------------------{times}')
 
 
 def 格式化输出(obj: Union[List, Set, Tuple, Dict], file: Union[String, Path, TextIOWrapper, None]=None):
+    if not isinstance(obj, dict):
+        obj = {_i: _j for _i, _j in enumerate(obj)}
     length = len(obj)
+    times = len(str(length))
     count = 0
-    print(青色(length), 红色('BEGIN  ↓'), )
-    for _i in obj:
-        if (count + 1) % 7 == 0 or count == length - 1:
-            end = '\n'
-        else:
-            end = ''
-        print(青色(_i.ljust(5)), end=end, file=file)
+    print(length, text('a.ba'), end='\n', file=file)
+
+    for _i in range(length):
+        end = '\n' if ((count + 1) % 5 == 0 or count == length - 1) else ''
+        index = _i + 1
+        name = obj[_i]
+        print(f'{index:0{times}d}:  {name}\t', end=end, file=file)
         count += 1
-    print(青色(length), 红色('END  ↑'), )
+    print(length, text('a.bb'), file=file)
 
 
 def support_ctrl(condition: Bool, mode: Literal['a', 'd'], *_z: Int):
@@ -94,4 +100,4 @@ def support_ctrl(condition: Bool, mode: Literal['a', 'd'], *_z: Int):
             operations[mode](support, _i)
 
 def 当前时间() -> String:
-    return datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    return datetime.now().strftime('%Y-%m-%d %H-%M-%S')

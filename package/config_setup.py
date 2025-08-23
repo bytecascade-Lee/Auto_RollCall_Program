@@ -12,11 +12,11 @@ from re import findall
 from .constant import *
 
 
-temp: Path = Path(__file__).parent.parent  # 返回对象是一个 <class 'pathlib._local.WindowsPath'> 类，可以直接传递给open函数
+PATH: Path = Path(__file__).parent.parent  # 返回对象是一个 <class 'pathlib._local.WindowsPath'> 类，可以直接传递给open函数
 # print(temp)  D:\python\点名
 
 try:
-    with open(file=temp / r'core.json', mode='r', encoding='utf-8') as file:
+    with open(file=PATH / r'core.json', mode='r', encoding='utf-8') as file:
         CORE = load(file)
 except FileNotFoundError:
     print('文件不存在: core.json')
@@ -31,13 +31,8 @@ keys: List[String] = ['name', 'parameter', 'output', 'cache',
 文件路径, 文件编码 = [{}, {}]
 
 for key in keys:
-    文件路径[f"{key}"] = temp / CORE[key]['path']
-    文件编码[f"{key}"] = CORE[key]['decode']
-    if not Path.is_file(文件路径[f"{key}"]):
-        err1: String = f'文件不存在: {CORE[key]['path']}'
-        err2: String = f'File does not exist: {CORE[key]['path']}'
-        print(err1); print(err2); logging.critical('0o00000x000')
-        exit(-100002)
+    文件路径[key] = PATH / CORE[key]['path']
+    文件编码[key] = CORE[key]['decode']
 
 logging.basicConfig(
         level=logging.INFO,
@@ -47,7 +42,15 @@ logging.basicConfig(
         filemode='a+',
         encoding=文件编码['cache'])
 
-logging.info('启动程序\n')
+logging.info('启动程序')
+
+
+for key in keys:
+    if not Path.exists(文件路径[key]):
+        with open(file=(temp:= PATH / CORE[key]['path']), mode='w', encoding='utf-8') as file:
+            pass
+        logging.warning(f'un-existing={temp}')
+        logging.info(f'touch {temp}')
 
 文本: ConfigParser = ConfigParser()
 文本.read(filenames=文件路径['lang'], encoding=文件编码['lang'])
