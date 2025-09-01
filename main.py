@@ -78,6 +78,8 @@ while True:
         while True:
             功能打印(FUNC_auxiliary)
             x = 取整输入(绿色(text('A.AI')))
+            if x == 0:
+                break
             if not (x in range(4, 13)):
                 print(红色(text("0.01")), 青色(x))
                 continue
@@ -85,8 +87,7 @@ while True:
                 print(红色((temp:= FUNC_check.get(x))))
                 logging.warning(temp)
                 continue
-            if x == 0:
-                break
+            
 
             if x == 4:
                 y = 姓名输入(绿色(text('4.02')))
