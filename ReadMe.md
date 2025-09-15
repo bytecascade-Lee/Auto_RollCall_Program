@@ -77,7 +77,3 @@ Auto_RollCall_Program/
 ## 联系方式
 
 如有任何问题或建议，请在[`Issues`](https://github.com/bytecascade-Lee/Auto_RollCall_Program/issues)中提交
-
-## 关于此 ReadMe.md
-- 提交时间：2025年8月23日
-- 版本号：4.4.1
