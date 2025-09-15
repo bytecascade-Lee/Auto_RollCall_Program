@@ -3,7 +3,7 @@ inner/cache.log
 .idea/
 api.rst
 docs/
-user/*
-!user/parameter.txt
-!user/
+user/namelist.txt
+user/output.txt
+user/history
 __pycache__/
